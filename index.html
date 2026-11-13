@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growell – Sổ tay tự học Critical Learning (Plan – Do – Review – Adjust)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBFAF6;--ink:#14213D;--ink2:#4A5568;--or:#E5600A;--or-d:#B84A06;--bl:#2A78D6;--line:#E6E2D6;--card:#fff;--ok:#1E8E5A;--bad:#C62828;--soft:#F3F0E6}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Be Vietnam Pro',system-ui,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 20px 64px}
+header{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
+.brand small{display:block;color:var(--or-d);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+h1{margin:2px 0 4px;font-size:1.9rem;font-weight:800;line-height:1.15}
+.sub{color:var(--ink2);font-size:.95rem;max-width:640px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button,select,input,textarea{font-family:inherit;font-size:.95rem;color:var(--ink)}
+.btn{border:1.5px solid var(--ink);background:#fff;border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--soft)}
+.btn.pri{background:var(--or);border-color:var(--or);color:#fff}
+.btn.pri:hover{background:var(--or-d)}
+.btn.sm{padding:5px 10px;font-size:.85rem}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.step{border:2px solid var(--line);background:#fff;border-radius:16px;padding:12px 14px;cursor:pointer;text-align:left}
+.step b{display:block;font-size:1.05rem}
+.step span{font-size:.82rem;color:var(--ink2)}
+.step.on{border-color:var(--or);background:#FFF4EC}
+.step .n{display:inline-block;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;text-align:center;line-height:26px;font-size:.85rem;margin-right:6px}
+.step.on .n{background:var(--or)}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:22px}
+.panel+.panel{margin-top:16px}
+h2{margin:0 0 4px;font-size:1.3rem;font-weight:800}
+h3{margin:18px 0 8px;font-size:1.05rem;font-weight:700}
+.hint{color:var(--ink2);font-size:.9rem;margin:0 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+label.f{display:flex;flex-direction:column;gap:3px;font-weight:600;font-size:.85rem;color:var(--ink2);flex:1;min-width:130px}
+input[type=text],input[type=number],input[type=date],input[type=time],select,textarea{border:1.5px solid #CFC9B8;border-radius:10px;padding:8px 10px;background:#fff;width:100%}
+textarea{min-height:64px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #F5B58A;outline-offset:1px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:.8rem;color:var(--ink2);text-transform:uppercase;letter-spacing:.04em}
+.tag{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:700;background:var(--soft)}
+.tag.or{background:#FFE6D5;color:var(--or-d)}
+.tag.bl{background:#DCEBFB;color:#1B5AA6}
+.tag.ok{background:#DDF3E8;color:var(--ok)}
+.tag.bad{background:#FBE0E0;color:var(--bad)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:8px;overflow-x:auto;padding-bottom:6px}
+.day{border:1.5px solid var(--line);border-radius:14px;padding:10px;background:#FFFEFB;min-height:150px}
+.day.off{background:#F1EFE8;opacity:.7}
+.day.over{border-color:var(--bad)}
+.day h4{margin:0;font-size:.9rem}
+.day .d{font-size:.78rem;color:var(--ink2)}
+.blk{margin-top:6px;border-radius:10px;padding:6px 8px;font-size:.8rem;background:#DCEBFB;border-left:4px solid var(--bl)}
+.blk.rv{background:#FFE6D5;border-left-color:var(--or)}
+.blk.cf{background:#FBE0E0;border-left-color:var(--bad)}
+.load{height:6px;border-radius:3px;background:var(--line);margin-top:6px;overflow:hidden}
+.load i{display:block;height:100%;background:var(--bl)}
+.load.over i{background:var(--bad)}
+.timer{display:flex;gap:16px;flex-wrap:wrap;align-items:center;border:2px dashed #CFC9B8;border-radius:16px;padding:14px 16px;background:#FFFEFB}
+.clock{font-size:2.6rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--or)}
+.ph{display:flex;gap:6px}
+.ph span{padding:5px 12px;border-radius:999px;border:1.5px solid var(--line);font-weight:700;font-size:.85rem;background:#fff}
+.ph span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rate{display:flex;gap:6px}
+.rate button{width:38px;height:38px;border-radius:10px;border:1.5px solid #CFC9B8;background:#fff;font-weight:800;cursor:pointer}
+.rate button.on{background:var(--or);border-color:var(--or);color:#fff}
+.bar{display:flex;align-items:center;gap:10px;margin:6px 0}
+.bar .l{width:190px;font-size:.9rem}
+.bar .t{flex:1;background:var(--soft);border-radius:8px;height:24px;overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--or);border-radius:8px}
+.bar .v{width:34px;font-weight:800}
+.note{background:#FFF8E7;border:1.5px solid #F0D79A;border-radius:12px;padding:10px 14px;font-size:.9rem;margin:10px 0}
+.warn{color:var(--bad);font-weight:600;font-size:.88rem}
+.empty{color:var(--ink2);padding:14px;text-align:center;border:1.5px dashed #CFC9B8;border-radius:12px;font-size:.92rem}
+pre.out{white-space:pre-wrap;background:#14213D;color:#EAF0FA;border-radius:12px;padding:14px;font-size:.85rem;max-height:260px;overflow:auto}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:.88rem;margin:4px 0}
+.chk input{width:auto;margin-top:4px}
+.days{display:flex;gap:8px;flex-wrap:wrap}
+.days label{display:flex;gap:5px;align-items:center;border:1.5px solid var(--line);border-radius:999px;padding:4px 12px;font-weight:600;font-size:.85rem;cursor:pointer;background:#fff}
+.days input{width:auto}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none;max-width:320px}
+.toast.show{opacity:1}
+.demo{background:#E8F1FC;border:1.5px solid #B9D3F2;border-radius:12px;padding:8px 14px;font-size:.88rem;margin-bottom:14px}
+@media(max-width:820px){.stepper{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}h1{font-size:1.5rem}.bar .l{width:120px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <small>Nhóm Growell · SSA101 · Critical Learning</small>
+    <h1>Sổ tay tự học: Plan – Do – Review – Adjust</h1>
+    <div class="sub">Công cụ tương tác đi cùng 4 buổi học: nhập việc cần học để xếp lịch tuần, ghi phiên học và lỗi sai, chấm Rating để hẹn ngày ôn, rồi chọn một việc cần sửa.</div>
+  </div>
+  <div class="tools">
+    <button class="btn" onclick="loadDemo()">Nạp dữ liệu mẫu</button>
+    <button class="btn" onclick="exportAll()">Tạo bản tóm tắt</button>
+    <button class="btn danger" id="resetBtn" onclick="resetAll()">Xoá dữ liệu</button>
+  </div>
+</header>
+<div id="demoBanner"></div>
+<nav class="stepper" id="stepper"></nav>
+<main id="main"></main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+var KEY='growell_cl_v1';
+var DAYN=['Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7','Chủ nhật'];
+var ERR=['Chưa hiểu bản chất','Nhớ nhầm công thức','Bất cẩn'];
+var S=null, demo=false, resetArm=false;
+var uid=function(){return 'x'+Math.random().toString(36).slice(2,9)};
+function pad(n){return (n<10?'0':'')+n}
+function iso(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function fromIso(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function today(){var d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function addDays(d,n){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()+n);return x}
+function vdate(d){return pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYear()}
+function mondayIso(){var d=today();var w=(d.getDay()+6)%7;return iso(addDays(d,-w))}
+function hhmm(m){return pad(Math.floor(m/60)%24)+':'+pad(m%60)}
+function toMin(s){var p=(s||'19:00').split(':');return (+p[0])*60+(+p[1]||0)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fresh(){return {goal:'',deadline:'',weekStart:mondayIso(),startTime:'19:00',buf:25,review:true,avail:[1,1,1,1,1,1,1],tasks:[],cards:[],draft:{topic:'',goal:'',correct:'',total:'4',noError:false,errors:[]},queue:[],adjust:{item:'',step:'',how:'',due:'',check:''},tab:'plan'}}
+function load(){try{var r=localStorage.getItem(KEY);if(r){var o=JSON.parse(r);var f=fresh();for(var k in f){if(!(k in o))o[k]=f[k]}return o}}catch(e){}return fresh()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+S=load();
+
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.className='toast show';clearTimeout(toast.t);toast.t=setTimeout(function(){el.className='toast'},2200)}
+function copy(text,msg){
+  var done=function(){toast(msg||'Đã sao chép')};
+  var fb=function(){var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){toast('Chưa sao chép được, hãy bôi đen và Ctrl+C')}document.body.removeChild(ta)};
+  try{navigator.clipboard.writeText(text).then(done,fb)}catch(e){fb()}
+}
+
+/* ---------- PLAN ---------- */
+function blockMin(t){var m=+t.mins||0,p=+t.prep||0;return Math.round(m+p+m*(S.buf/100))}
+function dayBlocks(i){
+  var b=S.tasks.filter(function(t){return t.day===i}).map(function(t){var st=toMin(t.start);return {kind:'task',name:t.name,subj:t.subject,st:st,en:st+blockMin(t)}});
+  b.sort(function(a,c){return a.st-c.st});
+  return b;
+}
+function lastAvail(){for(var i=6;i>=0;i--){if(S.avail[i])return i}return 6}
+function reviewBlock(){
+  if(!S.review)return null;
+  var i=lastAvail();var b=dayBlocks(i);var st=b.length?b[b.length-1].en+15:toMin(S.startTime);
+  return {day:i,st:st,en:st+20};
+}
+function autoSchedule(){
+  var days=[];for(var i=0;i<7;i++){if(S.avail[i])days.push(i)}
+  if(!days.length){toast('Hãy chọn ít nhất một ngày học');return}
+  var load={};days.forEach(function(d){load[d]=[]});
+  var ts=S.tasks.slice().sort(function(a,b){return blockMin(b)-blockMin(a)});
+  ts.forEach(function(t){
+    var best=days[0];days.forEach(function(d){if(load[d].length<load[best].length)best=d});
+    t.day=best;load[best].push(t);
+  });
+  days.forEach(function(d){var cur=toMin(S.startTime);load[d].forEach(function(t){t.start=hhmm(cur);cur+=blockMin(t)+15})});
+  save();render();toast('Đã xếp lịch tuần');
+}
+function planText(){
+  var ws=fromIso(S.weekStart);var out=['KẾ HOẠCH TUẦN (từ '+vdate(ws)+')'];
+  if(S.goal)out.push('ĐÍCH: '+S.goal+(S.deadline?' (trước '+vdate(fromIso(S.deadline))+')':''));
+  for(var i=0;i<7;i++){
+    var b=dayBlocks(i);var rv=reviewBlock();
+    var lines=b.map(function(x){return '  '+hhmm(x.st)+'–'+hhmm(x.en)+' '+x.name+(x.subj?' ('+x.subj+')':'')});
+    if(rv&&rv.day===i)lines.push('  '+hhmm(rv.st)+'–'+hhmm(rv.en)+' Review cuối tuần');
+    out.push(DAYN[i]+' '+vdate(addDays(ws,i))+':'+(lines.length?'\n'+lines.join('\n'):' nghỉ / trống'));
+  }
+  return out.join('\n');
+}
+function icsText(){
+  var ws=fromIso(S.weekStart);var L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Growell//Critical Learning//VI','CALSCALE:GREGORIAN'];
+  function stamp(d,m){return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(Math.floor(m/60)%24)+pad(m%60)+'00'}
+  function ev(d,st,en,title,desc){L.push('BEGIN:VEVENT','UID:'+uid()+'@growell','DTSTAMP:'+stamp(new Date(),new Date().getHours()*60+new Date().getMinutes()),'DTSTART:'+stamp(d,st),'DTEND:'+stamp(d,en),'SUMMARY:'+title.replace(/[,;\n]/g,' '),'DESCRIPTION:'+desc,'END:VEVENT')}
+  for(var i=0;i<7;i++){dayBlocks(i).forEach(function(x){ev(addDays(ws,i),x.st,x.en,x.name,'Ca học gồm thời gian chuẩn bị và Buffer Time')})}
+  var rv=reviewBlock();if(rv)ev(addDays(ws,rv.day),rv.st,rv.en,'Review cuối tuần','Xem lại Weekly Plan và Review Queue');
+  L.push('END:VCALENDAR');return L.join('\r\n');
+}
+function renderPlan(){
+  var ws=fromIso(S.weekStart);
+  var h='<div class="panel"><h2>Bước 1 · PLAN: ĐÍCH – VIỆC – LỊCH</h2><p class="hint">Nhập mục tiêu và các việc cần làm. Công cụ tự tính thời lượng cần khoá trên lịch: thời gian làm + chuẩn bị + Buffer Time, rồi xếp lịch tuần có giới hạn 3 ca học tập trung mỗi ngày.</p>';
+  h+='<div class="grid2"><label class="f">ĐÍCH – Tôi muốn đạt gì?<input type="text" value="'+esc(S.goal)+'" placeholder="VD: Tự giải được 5 bài vòng lặp, không nhìn bài mẫu" onchange="G.set(\'goal\',this.value)"></label>';
+  h+='<label class="f">Hạn chót (deadline)<input type="date" value="'+esc(S.deadline)+'" onchange="G.set(\'deadline\',this.value)"></label></div>';
+  h+='<h3>VIỆC – Tôi cần làm gì?</h3>';
+  h+='<div class="row" id="taskForm"><label class="f" style="flex:2;min-width:200px">Tên việc<input type="text" id="tn" placeholder="VD: Làm 5 bài tập vòng lặp"></label>';
+  h+='<label class="f">Môn<input type="text" id="ts" placeholder="PRF192"></label>';
+  h+='<label class="f" style="max-width:130px">Làm (phút)<input type="number" id="tm" min="5" step="5" value="60"></label>';
+  h+='<label class="f" style="max-width:130px">Chuẩn bị (phút)<input type="number" id="tp" min="0" step="5" value="10"></label>';
+  h+='<button class="btn pri" onclick="G.addTask()">Thêm việc</button></div>';
+  h+='<div class="row" style="margin-top:12px"><label class="f" style="max-width:340px">Buffer Time: <b>'+S.buf+'%</b> thời gian làm (khuyến nghị 20–30%)<input type="range" min="20" max="30" step="1" value="'+S.buf+'" oninput="G.buf(this.value)" style="width:100%"></label></div>';
+  if(S.tasks.length){
+    h+='<table style="margin-top:8px"><thead><tr><th>Việc</th><th>Môn</th><th>Làm</th><th>Chuẩn bị</th><th>Buffer</th><th>Cần khoá</th><th>Ngày</th><th>Giờ bắt đầu</th><th></th></tr></thead><tbody>';
+    S.tasks.forEach(function(t){
+      var bf=Math.round((+t.mins||0)*S.buf/100);
+      h+='<tr><td>'+esc(t.name)+'</td><td>'+esc(t.subject)+'</td>';
+      h+='<td><input type="number" style="width:76px" min="5" step="5" value="'+t.mins+'" onchange="G.task(\''+t.id+'\',\'mins\',this.value)"></td>';
+      h+='<td><input type="number" style="width:76px" min="0" step="5" value="'+t.prep+'" onchange="G.task(\''+t.id+'\',\'prep\',this.value)"></td>';
+      h+='<td>+'+bf+'’</td><td><b>'+blockMin(t)+'’</b></td>';
+      h+='<td><select onchange="G.task(\''+t.id+'\',\'day\',+this.value)" style="width:110px"><option value="-1"'+(t.day<0?' selected':'')+'>Chưa xếp</option>'+DAYN.map(function(d,i){return '<option value="'+i+'"'+(t.day===i?' selected':'')+'>'+d+'</option>'}).join('')+'</select></td>';
+      h+='<td><input type="time" style="width:110px" value="'+esc(t.start)+'" onchange="G.task(\''+t.id+'\',\'start\',this.value)"></td>';
+      h+='<td><button class="btn sm danger" onclick="G.delTask(\''+t.id+'\')">Xoá</button></td></tr>';
+    });
+    h+='</tbody></table>';
+    h+='<div class="note">Ví dụ công thức: 60 phút làm bài + 10 phút chuẩn bị + 15 phút Buffer (25%) = 85 phút cần khoá trên lịch.</div>';
+  } else h+='<div class="empty" style="margin-top:12px">Chưa có việc nào. Thêm việc ở trên, hoặc bấm “Nạp dữ liệu mẫu” để xem thử.</div>';
+  h+='</div>';
+  h+='<div class="panel"><h2>LỊCH – Tôi làm khi nào?</h2><p class="hint">Chọn tuần, ngày có thể học và giờ bắt đầu. Công cụ chia đều việc vào các ngày, tối đa 3 ca mỗi ngày, rồi bạn chỉnh tay nếu cần.</p>';
+  h+='<div class="row"><label class="f" style="max-width:190px">Tuần bắt đầu từ (Thứ 2)<input type="date" value="'+esc(S.weekStart)+'" onchange="G.set(\'weekStart\',this.value)"></label>';
+  h+='<label class="f" style="max-width:150px">Giờ bắt đầu học<input type="time" value="'+esc(S.startTime)+'" onchange="G.set(\'startTime\',this.value)"></label>';
+  h+='<div class="days">'+DAYN.map(function(d,i){return '<label><input type="checkbox" '+(S.avail[i]?'checked':'')+' onchange="G.avail('+i+',this.checked)">'+d+'</label>'}).join('')+'</div>';
+  h+='<label class="chk" style="margin:0 8px"><input type="checkbox" '+(S.review?'checked':'')+' onchange="G.set(\'review\',this.checked)"> Thêm mốc Review cuối tuần</label>';
+  h+='<button class="btn pri" onclick="G.auto()">Tự xếp lịch tuần</button></div>';
+  var rv=reviewBlock();var warns=[];
+  h+='<div class="week" style="margin-top:14px">';
+  for(var i=0;i<7;i++){
+    var bl=dayBlocks(i);var over=bl.length>3;
+    var conflict=false;for(var j=1;j<bl.length;j++){if(bl[j].st<bl[j-1].en)conflict=true}
+    if(over)warns.push(DAYN[i]+' có '+bl.length+' ca (vượt giới hạn 3 ca/ngày)');
+    if(conflict)warns.push(DAYN[i]+' có các ca bị chồng giờ');
+    var unav=!S.avail[i]&&bl.length;if(unav)warns.push(DAYN[i]+' được xếp việc nhưng đã đánh dấu bận');
+    h+='<div class="day'+(S.avail[i]?'':' off')+(over?' over':'')+'"><h4>'+DAYN[i]+'</h4><div class="d">'+vdate(addDays(ws,i))+'</div>';
+    bl.forEach(function(x){h+='<div class="blk'+((over||conflict)?' cf':'')+'"><b>'+hhmm(x.st)+'–'+hhmm(x.en)+'</b><br>'+esc(x.name)+(x.subj?' · '+esc(x.subj):'')+'</div>'});
+    if(rv&&rv.day===i)h+='<div class="blk rv"><b>'+hhmm(rv.st)+'–'+hhmm(rv.en)+'</b><br>Review cuối tuần</div>';
+    h+='<div class="load'+(over?' over':'')+'"><i style="width:'+Math.min(100,bl.length/3*100)+'%"></i></div><div class="d">'+bl.length+'/3 ca học</div></div>';
+  }
+  h+='</div>';
+  if(warns.length)h+='<p class="warn" style="margin-top:10px">⚠ '+warns.map(esc).join(' · ')+'. Hãy dời bớt việc sang ngày khác hoặc kéo giãn lịch.</p>';
+  else if(S.tasks.some(function(t){return t.day>=0}))h+='<p style="margin-top:10px"><span class="tag ok">Lịch khả thi</span> Mỗi ngày không quá 3 ca và không chồng giờ.</p>';
+  h+='<div class="row" style="margin-top:12px"><button class="btn" onclick="G.copyPlan()">Sao chép lịch (văn bản)</button><button class="btn" onclick="G.showIcs()">Tạo file lịch .ics</button></div>';
+  h+='<div id="icsBox"></div></div>';
+  return h;
+}
+
+/* ---------- DO ---------- */
+var PH=[{n:'HỌC',m:30},{n:'NHỚ LẠI',m:12},{n:'ĐỐI CHIẾU',m:10}];
+var tm={i:0,left:PH[0].m*60,run:false,h:null};
+function fmt(s){return pad(Math.floor(s/60))+':'+pad(s%60)}
+function tmUpdate(){
+  var c=document.getElementById('clock');if(c)c.textContent=fmt(tm.left);
+  var p=document.getElementById('phs');if(p)p.innerHTML=PH.map(function(x,i){return '<span class="'+(i===tm.i?'on':'')+'">'+(i+1)+'. '+x.n+' '+x.m+'’</span>'}).join('');
+  var b=document.getElementById('tmBtn');if(b)b.textContent=tm.run?'Tạm dừng':'Bắt đầu';
+}
+function tmTick(){
+  if(tm.left>0){tm.left--}
+  else{ if(tm.i<PH.length-1){tm.i++;tm.left=PH[tm.i].m*60;toast('Sang bước: '+PH[tm.i].n)}else{tmStop();toast('Hết phiên học. Hãy ghi kết quả vào thẻ.')} }
+  tmUpdate();
+}
+function tmStop(){tm.run=false;clearInterval(tm.h);tm.h=null}
+function renderDo(){
+  var d=S.draft;
+  var h='<div class="panel"><h2>Bước 2 · DO: HỌC – NHỚ LẠI – ĐỐI CHIẾU</h2><p class="hint">Một phiên học 45–60 phút. Ở bước NHỚ LẠI hãy che tài liệu và tự trả lời; chỉ mở tài liệu khi sang bước ĐỐI CHIẾU.</p>';
+  h+='<div class="timer"><div class="clock" id="clock">'+fmt(tm.left)+'</div><div><div class="ph" id="phs"></div><div class="row" style="margin-top:10px"><button class="btn pri" id="tmBtn" onclick="G.tmToggle()">Bắt đầu</button><button class="btn" onclick="G.tmNext()">Sang bước kế tiếp</button><button class="btn" onclick="G.tmReset()">Đặt lại</button></div></div></div></div>';
+  h+='<div class="panel"><h2>Study Session Card</h2><p class="hint">Ghi lại phiên học vừa làm. Nếu đối chiếu mà không thấy lỗi, hãy ghi rõ điều đó thay vì để trống.</p>';
+  h+='<div class="grid2"><label class="f">Chủ đề / môn<input type="text" value="'+esc(d.topic)+'" placeholder="VD: Vòng lặp for · PRF192" onchange="G.dr(\'topic\',this.value)"></label>';
+  h+='<label class="f">Mục tiêu và đầu ra cần tạo<input type="text" value="'+esc(d.goal)+'" placeholder="VD: Tự viết được cấu trúc for không nhìn bài" onchange="G.dr(\'goal\',this.value)"></label></div>';
+  h+='<div class="row" style="margin-top:10px"><label class="f" style="max-width:160px">Số câu đúng khi tự truy hồi<input type="number" min="0" value="'+esc(d.correct)+'" onchange="G.dr(\'correct\',this.value)"></label><label class="f" style="max-width:130px">Tổng số câu<input type="number" min="1" value="'+esc(d.total)+'" onchange="G.dr(\'total\',this.value)"></label></div>';
+  h+='<h3>Error Log – lỗi sau khi đối chiếu</h3>';
+  h+='<label class="chk"><input type="checkbox" '+(d.noError?'checked':'')+' onchange="G.dr(\'noError\',this.checked,true)"> Đối chiếu xong nhưng không phát hiện lỗi đáng kể</label>';
+  if(!d.noError){
+    h+='<div class="row"><label class="f" style="flex:2;min-width:220px">Lỗi cụ thể (kiến thức bị hổng)<input type="text" id="en" placeholder="VD: Nhầm khởi tạo chạy lại sau mỗi vòng"></label>';
+    h+='<label class="f">Nhóm lỗi<select id="et">'+ERR.map(function(e){return '<option>'+e+'</option>'}).join('')+'</select></label>';
+    h+='<label class="f" style="flex:2;min-width:220px">Hướng sửa<input type="text" id="ef" placeholder="VD: Mô phỏng từng lượt của i"></label>';
+    h+='<button class="btn" onclick="G.addErr()">Thêm lỗi</button></div>';
+    if(d.errors.length){
+      h+='<table style="margin-top:8px"><thead><tr><th>Lỗi</th><th>Nhóm</th><th>Hướng sửa</th><th></th></tr></thead><tbody>'+d.errors.map(function(e,i){return '<tr><td>'+esc(e.text)+'</td><td><span class="tag or">'+esc(e.type)+'</span></td><td>'+esc(e.fix)+'</td><td><button class="btn sm danger" onclick="G.delErr('+i+')">Xoá</button></td></tr>'}).join('')+'</tbody></table>';
+    }
+  }
+  h+='<div class="row" style="margin-top:14px"><button class="btn pri" onclick="G.saveCard()">Lưu thẻ học</button></div></div>';
+  h+='<div class="panel"><h2>Các thẻ đã lưu</h2>';
+  if(S.cards.length){
+    h+='<table><thead><tr><th>Ngày</th><th>Chủ đề</th><th>Kết quả</th><th>Số lỗi</th><th></th></tr></thead><tbody>'+S.cards.slice().reverse().map(function(c){return '<tr><td>'+esc(c.date)+'</td><td>'+esc(c.topic||'(chưa đặt tên)')+'<div class="hint" style="margin:0">'+esc(c.goal)+'</div></td><td><b>'+esc(c.correct)+'/'+esc(c.total)+'</b></td><td>'+(c.noError?'<span class="tag ok">Không lỗi</span>':c.errors.length)+'</td><td><button class="btn sm danger" onclick="G.delCard(\''+c.id+'\')">Xoá</button></td></tr>'}).join('')+'</tbody></table>';
+  } else h+='<div class="empty">Chưa có thẻ nào.</div>';
+  h+='</div>';
+  return h;
+}
+
+/* ---------- REVIEW ---------- */
+function calcQ(q){
+  var r=+q.rating,td=today(),gap=q.exam?Math.round((fromIso(q.exam)-td)/86400000):null,days,label,why=[];
+  if(r<=1){days=1;label='Sau 1 ngày';why.push('Rating 0–1: ôn trong khoảng 24 giờ')}
+  else if(r===2){days=2;label='Sau 1–2 ngày';why.push('Rating 2: rút ngắn, tập trung sửa lỗi trong Error Log')}
+  else if(r===3){days=3;label='Sau 3 ngày'}
+  else if(r===4){days=7;label='Sau 7 ngày'}
+  else{
+    label='Sau 7–14 ngày';
+    var noTest=(gap===null||gap>14);
+    var ok=q.c1&&q.c2&&q.c3&&noTest;
+    if(ok){days=14;why.push('Đủ 4 điều kiện nên dùng mốc 14 ngày')}else{days=7;why.push('Chưa đủ điều kiện mốc 14 ngày nên giữ 7 ngày')}
+  }
+  if(gap!==null&&gap>=0&&gap<7){
+    var cap=r>=4?3:(r===3?2:days);
+    if(days>cap){days=cap;why.push('Kiểm tra còn '+gap+' ngày nên rút lịch xuống khoảng '+cap+' ngày')}
+    else if(r===3){why.push('Kiểm tra còn '+gap+' ngày')}
+  }
+  if(gap!==null&&gap>=0&&days>=gap&&gap>0){days=Math.max(1,gap-1);why.push('Ôn trước ngày kiểm tra')}
+  if(gap!==null&&gap<0)why.push('Ngày kiểm tra đã qua');
+  return {date:addDays(td,days),label:label,days:days,why:why};
+}
+var qf={rating:3};
+function renderReview(){
+  var h='<div class="panel"><h2>Bước 3 · REVIEW: CHẤM – CHỌN – HẸN ÔN</h2><p class="hint">Chấm Rating 0–5 dựa trên bằng chứng truy hồi (kết quả tự kiểm tra, lỗi trong Error Log), không dựa vào số lần đã đọc hay cảm giác quen thuộc. Công cụ gợi ý ngày ôn theo khung 1–3–7–14 và điều chỉnh khi kiểm tra gần.</p>';
+  h+='<div class="grid3"><label class="f">Chủ đề<input type="text" id="qt" placeholder="VD: Vòng lặp"></label><label class="f">Môn<input type="text" id="qs" placeholder="PRF192"></label><label class="f">Ngày kiểm tra (nếu có)<input type="date" id="qe"></label></div>';
+  h+='<div class="row" style="margin-top:10px"><div><div style="font-weight:600;font-size:.85rem;color:var(--ink2);margin-bottom:3px">Rating (0 = quên hẳn · 5 = giải được bài biến thể)</div><div class="rate" id="rate">'+[0,1,2,3,4,5].map(function(n){return '<button class="'+(qf.rating===n?'on':'')+'" onclick="G.rate('+n+')">'+n+'</button>'}).join('')+'</div></div></div>';
+  if(qf.rating===5){
+    h+='<div class="note"><b>Điều kiện cân nhắc mốc 14 ngày</b> (cần đủ cả 4):'+
+    '<label class="chk"><input type="checkbox" id="c1"> Trả lời đúng nhiều lần độc lập, không nhìn tài liệu gợi ý</label>'+
+    '<label class="chk"><input type="checkbox" id="c2"> Giải được bài biến thể có độ khó cao</label>'+
+    '<label class="chk"><input type="checkbox" id="c3"> Tự diễn đạt và giải thích được bản chất kiến thức</label>'+
+    '<div class="hint" style="margin:4px 0 0">Điều kiện 4 (môn không có kiểm tra trong 14 ngày tới) được tính tự động từ ngày kiểm tra.</div></div>';
+  }
+  h+='<div class="row" style="margin-top:10px"><button class="btn pri" onclick="G.addQ()">Thêm vào Review Queue</button></div></div>';
+  h+='<div class="panel"><h2>Review Queue</h2>';
+  if(S.queue.length){
+    var rows=S.queue.map(function(q){return {q:q,c:calcQ(q)}}).sort(function(a,b){return a.c.date-b.c.date});
+    h+='<table><thead><tr><th>Chủ đề</th><th>Môn</th><th>Rating</th><th>Lịch cơ bản</th><th>Ngày ôn dự kiến</th><th>Lý do điều chỉnh</th><th></th></tr></thead><tbody>';
+    rows.forEach(function(x){
+      var rt=+x.q.rating;var cls=rt<=2?'bad':(rt===3?'or':'ok');
+      h+='<tr><td><b>'+esc(x.q.topic)+'</b></td><td>'+esc(x.q.subject)+'</td><td><span class="tag '+cls+'">'+rt+'</span></td><td>'+x.c.label+'</td><td><b>'+vdate(x.c.date)+'</b><div class="hint" style="margin:0">sau '+x.c.days+' ngày</div></td><td style="font-size:.85rem">'+(x.c.why.length?x.c.why.map(esc).join('; '):'Theo lịch cơ bản')+(x.q.exam?'<div class="hint" style="margin:0">Kiểm tra: '+vdate(fromIso(x.q.exam))+'</div>':'')+'</td><td><button class="btn sm danger" onclick="G.delQ(\''+x.q.id+'\')">Xoá</button></td></tr>';
+    });
+    h+='</tbody></table><div class="note">Lịch ôn là gợi ý, không phải công thức cố định. Đừng tự nâng Rating chỉ vì đã xem tài liệu nhiều lần.</div>';
+  } else h+='<div class="empty">Review Queue đang trống.</div>';
+  h+='</div>';
+  return h;
+}
+
+/* ---------- ADJUST ---------- */
+function analysis(){
+  var cnt={};ERR.forEach(function(e){cnt[e]=0});var tot=0,sc=0,sn=0;
+  S.cards.forEach(function(c){(c.errors||[]).forEach(function(e){cnt[e.type]=(cnt[e.type]||0)+1;tot++});if(c.total>0&&c.correct!==''){sc+=(+c.correct);sn+=(+c.total)}});
+  var low=S.queue.filter(function(q){return +q.rating<=2});
+  var over=[];for(var i=0;i<7;i++){if(dayBlocks(i).length>3)over.push(DAYN[i])}
+  return {cnt:cnt,tot:tot,rate:sn?Math.round(sc/sn*100):null,low:low,over:over};
+}
+function renderAdjust(){
+  var a=analysis();var a2=S.adjust;
+  var h='<div class="panel"><h2>Bước 4 · ADJUST: TÌM ĐIỂM NGHẼN – SỬA MỘT VIỆC</h2><p class="hint">Nhìn lại dữ liệu từ ba bước trước, chọn <b>một</b> vấn đề ưu tiên và lập Adjustment Plan. Dữ liệu bên dưới lấy tự động từ thẻ học, Review Queue và Weekly Plan của bạn.</p>';
+  h+='<h3>Bằng chứng từ Error Log</h3>';
+  if(a.tot){
+    var mx=Math.max.apply(null,ERR.map(function(e){return a.cnt[e]}));
+    h+=ERR.map(function(e){return '<div class="bar"><div class="l">'+e+'</div><div class="t"><i style="width:'+(mx?a.cnt[e]/mx*100:0)+'%"></i></div><div class="v">'+a.cnt[e]+'</div></div>'}).join('');
+    if(a.rate!==null)h+='<p class="hint">Tỉ lệ đúng khi tự truy hồi qua các thẻ: <b>'+a.rate+'%</b>.</p>';
+  } else h+='<div class="empty">Chưa có lỗi nào được ghi. Hãy hoàn thành Study Session Card ở bước DO.</div>';
+  h+='<h3>Gợi ý điểm nghẽn (bấm để chọn làm việc cần sửa)</h3><div class="row">';
+  var sug=[];
+  if(a.tot){var top=ERR.slice().sort(function(x,y){return a.cnt[y]-a.cnt[x]})[0];sug.push('Lỗi thường gặp nhất: '+top.toLowerCase())}
+  a.low.forEach(function(q){sug.push('Chủ đề '+q.topic+(q.subject?' ('+q.subject+')':'')+' đang Rating '+q.rating)});
+  if(a.over.length)sug.push('Lịch tuần quá tải vào '+a.over.join(', '));
+  if(sug.length)h+=sug.map(function(s,i){return '<button class="btn" onclick="G.pick('+i+')">'+esc(s)+'</button>'}).join('');
+  else h+='<div class="empty" style="flex:1">Chưa có gợi ý. Bạn vẫn có thể tự nhập việc cần sửa bên dưới.</div>';
+  h+='</div></div>';
+  G.sug=sug;
+  h+='<div class="panel"><h2>Adjustment Plan</h2><p class="hint">Chỉ chọn một việc để sửa trong tuần tới. Kế hoạch càng cụ thể càng dễ kiểm tra.</p>';
+  h+='<div class="grid2"><label class="f">Việc cần sửa (một vấn đề ưu tiên)<input type="text" value="'+esc(a2.item)+'" onchange="G.adj(\'item\',this.value)" placeholder="VD: Hay nhầm phần cập nhật trong vòng lặp for"></label>';
+  h+='<label class="f">Bước cần điều chỉnh<input type="text" value="'+esc(a2.step)+'" onchange="G.adj(\'step\',this.value)" placeholder="VD: Bước NHỚ LẠI: tự viết lại không nhìn mẫu"></label></div>';
+  h+='<div class="grid2" style="margin-top:10px"><label class="f">Cách làm cụ thể<textarea onchange="G.adj(\'how\',this.value)" placeholder="VD: Mỗi tối 15 phút, tự mô phỏng từng lượt của i trên giấy">'+esc(a2.how)+'</textarea></label>';
+  h+='<label class="f">Cách kiểm tra kết quả<textarea onchange="G.adj(\'check\',this.value)" placeholder="VD: Cuối tuần tự giải 3 bài mới, đúng ít nhất 2 bài không nhìn mẫu">'+esc(a2.check)+'</textarea></label></div>';
+  h+='<div class="row" style="margin-top:10px"><label class="f" style="max-width:200px">Thời hạn<input type="date" value="'+esc(a2.due)+'" onchange="G.adj(\'due\',this.value)"></label><button class="btn pri" onclick="G.copyAdj()">Sao chép Adjustment Plan</button></div></div>';
+  return h;
+}
+
+/* ---------- shell ---------- */
+var TABS=[['plan','1','PLAN','Đích – Việc – Lịch'],['do','2','DO','Học – Nhớ lại – Đối chiếu'],['review','3','REVIEW','Chấm – Chọn – Hẹn ôn'],['adjust','4','ADJUST','Tìm điểm nghẽn – Sửa một việc']];
+function render(){
+  document.getElementById('stepper').innerHTML=TABS.map(function(t){return '<button class="step'+(S.tab===t[0]?' on':'')+'" onclick="G.tab(\''+t[0]+'\')"><b><span class="n">'+t[1]+'</span>'+t[2]+'</b><span>'+t[3]+'</span></button>'}).join('');
+  document.getElementById('demoBanner').innerHTML=demo?'<div class="demo">Đang hiển thị <b>dữ liệu mẫu</b> (ví dụ minh hoạ trong chương trình, không phải dữ liệu thật). Bấm “Xoá dữ liệu” để bắt đầu của riêng bạn.</div>':'';
+  var m=document.getElementById('main');
+  m.innerHTML=S.tab==='plan'?renderPlan():S.tab==='do'?renderDo():S.tab==='review'?renderReview():renderAdjust();
+  if(S.tab==='do')tmUpdate();
+  var rb=document.getElementById('resetBtn');rb.textContent=resetArm?'Bấm lần nữa để xoá hết':'Xoá dữ liệu';
+}
+
+/* ---------- actions ---------- */
+var G=window.G={sug:[],
+ set:function(k,v){S[k]=v;save();render()},
+ buf:function(v){S.buf=+v;save();render()},
+ avail:function(i,v){S.avail[i]=v?1:0;save();render()},
+ tab:function(t){S.tab=t;save();render();window.scrollTo(0,0)},
+ addTask:function(){var n=document.getElementById('tn').value.trim();if(!n){toast('Hãy nhập tên việc');return}
+  S.tasks.push({id:uid(),name:n,subject:document.getElementById('ts').value.trim(),mins:+document.getElementById('tm').value||60,prep:+document.getElementById('tp').value||0,day:-1,start:S.startTime});save();render()},
+ task:function(id,k,v){var t=S.tasks.filter(function(x){return x.id===id})[0];if(!t)return;t[k]=(k==='mins'||k==='prep')?(+v||0):v;save();render()},
+ delTask:function(id){S.tasks=S.tasks.filter(function(x){return x.id!==id});save();render()},
+ auto:autoSchedule,
+ copyPlan:function(){copy(planText(),'Đã sao chép lịch tuần')},
+ showIcs:function(){var t=icsText();var b=document.getElementById('icsBox');b.innerHTML='<div class="note">Trình duyệt trong khung này không cho tải file. Hãy sao chép nội dung dưới đây, dán vào Notepad và lưu với tên <b>lich_tuan.ics</b>, rồi nhập vào Google Calendar hoặc Outlook.</div><pre class="out" id="icsPre"></pre><button class="btn" onclick="G.copyIcs()">Sao chép nội dung .ics</button>';document.getElementById('icsPre').textContent=t},
+ copyIcs:function(){copy(icsText(),'Đã sao chép nội dung .ics')},
+ tmToggle:function(){if(tm.run){tmStop()}else{tm.run=true;tm.h=setInterval(tmTick,1000)}tmUpdate()},
+ tmNext:function(){if(tm.i<PH.length-1){tm.i++;tm.left=PH[tm.i].m*60}else{tm.left=0}tmUpdate()},
+ tmReset:function(){tmStop();tm.i=0;tm.left=PH[0].m*60;tmUpdate()},
+ dr:function(k,v,rerender){S.draft[k]=v;save();if(rerender)render()},
+ addErr:function(){var t=document.getElementById('en').value.trim();if(!t){toast('Hãy mô tả lỗi cụ thể');return}
+  S.draft.errors.push({text:t,type:document.getElementById('et').value,fix:document.getElementById('ef').value.trim()});save();render()},
+ delErr:function(i){S.draft.errors.splice(i,1);save();render()},
+ saveCard:function(){var d=S.draft;if(!d.topic.trim()){toast('Hãy nhập chủ đề');return}
+  if(d.correct===''||d.total===''){toast('Hãy nhập kết quả tự truy hồi');return}
+  if(!d.noError&&!d.errors.length){toast('Thêm ít nhất một lỗi, hoặc tích “không phát hiện lỗi”');return}
+  S.cards.push({id:uid(),date:vdate(new Date()),topic:d.topic,goal:d.goal,correct:d.correct,total:d.total,noError:d.noError,errors:d.noError?[]:d.errors.slice()});
+  S.draft={topic:'',goal:'',correct:'',total:d.total||'4',noError:false,errors:[]};save();render();toast('Đã lưu thẻ học')},
+ delCard:function(id){S.cards=S.cards.filter(function(c){return c.id!==id});save();render()},
+ rate:function(n){qf.rating=n;var keep={t:(document.getElementById('qt')||{}).value,s:(document.getElementById('qs')||{}).value,e:(document.getElementById('qe')||{}).value};render();document.getElementById('qt').value=keep.t||'';document.getElementById('qs').value=keep.s||'';document.getElementById('qe').value=keep.e||''},
+ addQ:function(){var t=document.getElementById('qt').value.trim();if(!t){toast('Hãy nhập chủ đề');return}
+  var g=function(id){var e=document.getElementById(id);return !!(e&&e.checked)};
+  S.queue.push({id:uid(),topic:t,subject:document.getElementById('qs').value.trim(),exam:document.getElementById('qe').value,rating:qf.rating,c1:g('c1'),c2:g('c2'),c3:g('c3')});save();render();toast('Đã thêm vào Review Queue')},
+ delQ:function(id){S.queue=S.queue.filter(function(q){return q.id!==id});save();render()},
+ pick:function(i){S.adjust.item=G.sug[i]||'';save();render();toast('Đã chọn làm việc cần sửa')},
+ adj:function(k,v){S.adjust[k]=v;save()},
+ copyAdj:function(){var a=S.adjust;copy('ADJUSTMENT PLAN\nViệc cần sửa: '+a.item+'\nBước cần điều chỉnh: '+a.step+'\nCách làm: '+a.how+'\nThời hạn: '+(a.due?vdate(fromIso(a.due)):'')+'\nCách kiểm tra kết quả: '+a.check,'Đã sao chép Adjustment Plan')}
+};
+window.loadDemo=function(){
+  demo=true;var ws=mondayIso();
+  S=fresh();S.weekStart=ws;S.goal='Tự giải được 5 bài vòng lặp, không nhìn bài mẫu';S.deadline=iso(addDays(today(),6));
+  S.tasks=[{id:uid(),name:'Ôn cú pháp vòng lặp và làm 5 bài',subject:'PRF192',mins:90,prep:10,day:-1,start:'19:00'},{id:uid(),name:'Ôn công thức đạo hàm',subject:'MAE101',mins:60,prep:10,day:-1,start:'19:00'},{id:uid(),name:'Đọc Memory Hierarchy',subject:'CEA201',mins:45,prep:10,day:-1,start:'19:00'},{id:uid(),name:'Viết lại các bài làm sai',subject:'PRF192',mins:45,prep:5,day:-1,start:'19:00'}];
+  autoSchedule();
+  S.cards=[{id:uid(),date:vdate(new Date()),topic:'Vòng lặp for · PRF192',goal:'Tự viết được cấu trúc for không nhìn bài',correct:'3',total:'4',noError:false,errors:[{text:'Nhầm phần khởi tạo chạy lại sau mỗi vòng',type:'Chưa hiểu bản chất',fix:'Mô phỏng từng lượt của i'},{text:'Tính nhầm một lượt của i',type:'Bất cẩn',fix:'Lập bảng giá trị i'}]}];
+  S.queue=[{id:uid(),topic:'Đạo hàm',subject:'MAE101',exam:iso(addDays(today(),6)),rating:2,c1:false,c2:false,c3:false},{id:uid(),topic:'Vòng lặp',subject:'PRF192',exam:'',rating:4,c1:false,c2:false,c3:false},{id:uid(),topic:'Memory Hierarchy',subject:'CEA201',exam:'',rating:1,c1:false,c2:false,c3:false}];
+  S.tab='plan';save();render();toast('Đã nạp dữ liệu mẫu');
+};
+window.resetAll=function(){
+  if(!resetArm){resetArm=true;render();setTimeout(function(){resetArm=false;render()},3000);return}
+  resetArm=false;demo=false;tmStop();S=fresh();save();render();toast('Đã xoá dữ liệu');
+};
+window.exportAll=function(){
+  var a=analysis();var o=['SỔ TAY TỰ HỌC – GROWELL · CRITICAL LEARNING','',planText(),''];
+  o.push('STUDY SESSION CARD ('+S.cards.length+' thẻ)');
+  S.cards.forEach(function(c){o.push('- '+c.date+' | '+c.topic+' | '+c.correct+'/'+c.total+' | '+(c.noError?'không lỗi':c.errors.map(function(e){return e.type+': '+e.text}).join('; ')))});
+  o.push('','REVIEW QUEUE');
+  S.queue.map(function(q){return {q:q,c:calcQ(q)}}).sort(function(x,y){return x.c.date-y.c.date}).forEach(function(x){o.push('- '+x.q.topic+(x.q.subject?' ('+x.q.subject+')':'')+' | Rating '+x.q.rating+' | ôn '+vdate(x.c.date)+(x.c.why.length?' | '+x.c.why.join('; '):''))});
+  o.push('','ADJUSTMENT PLAN','Việc cần sửa: '+S.adjust.item,'Bước điều chỉnh: '+S.adjust.step,'Cách làm: '+S.adjust.how,'Cách kiểm tra: '+S.adjust.check);
+  copy(o.join('\n'),'Đã sao chép bản tóm tắt sổ tay');
+};
+render();
+})();
+</script>
+</body>
+</html>
